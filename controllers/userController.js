@@ -6,14 +6,14 @@ module.exports.login = async (req, res, next) => {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
     if (!user)
-    return res.status(409).send({message:"given email not exist"})
+      return res.json({ msg: "Incorrect Username or Password", status: false });
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid)
-    return res.status(409).send({message:"given email not exist"})
+      return res.json({ msg: "Incorrect Username or Password", status: false });
     delete user.password;
     return res.json({ status: true, user });
-  } catch (err) {
-    res.status(500).send({message:"Login error"});
+  } catch (ex) {
+    next(ex);
   }
 };
 
