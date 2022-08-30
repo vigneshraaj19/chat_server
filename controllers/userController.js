@@ -2,7 +2,7 @@ const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 
 module.exports.login = async (req, res, next) => {
-  try {
+  
     const { username, password } = req.body;
     const user = await User.findOne({ username });
     if (!user)
@@ -12,9 +12,7 @@ module.exports.login = async (req, res, next) => {
       return res.json({ msg: "Incorrect Username or Password", status: false });
     delete user.password;
     return res.json({ status: true, user });
-  } catch (ex) {
-    next(ex);
-  }
+ 
 };
 
 module.exports.register = async (req, res, next) => {
