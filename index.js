@@ -17,7 +17,7 @@ dotenv.config();
 app.use( cors({ origin: "*", }) );
  app.use(express.json());
 
-
+ app.get("/", (request, response) => response.status(200).send("hello world vicky"));
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
