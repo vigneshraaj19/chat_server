@@ -22,8 +22,7 @@ app.use( cors({ origin: "*", }) );
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
+    useUnifiedTopology: true
   })
   .then(() => {
     console.log("DB Connetion Successfull");
