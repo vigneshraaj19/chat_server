@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 
-module.exports.login = async (req, res, next) => {
+module.exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username });
@@ -13,7 +13,7 @@ module.exports.login = async (req, res, next) => {
     delete user.password;
     return res.json({ status: true, user });
   } catch (ex) {
-    next(ex);
+    return res.json({message:"Login error"});
   }
 };
 
